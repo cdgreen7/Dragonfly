@@ -8,7 +8,7 @@ import json
 
 from common import (EXPRESS, QUEUE_FOR, STANDARD, RpcClient, connect, declare_topology,
                     parse_text_arg, prio_label, print_record, print_table,
-                    publish_event, submit_ticket)
+                    publish_event, submit_appointment)
 
 
 class StationError(Exception):
@@ -96,7 +96,7 @@ class Station(cmd.Cmd):
         if express not in ("", "y", "yes", "n", "no"):
             raise StationError("  Answer y or n.")
         priority = EXPRESS if express in ("y", "yes") else STANDARD
-        t = submit_ticket(self.ch, self.name, customer, device, issue, priority)
+        t = submit_appointment(self.ch, self.name, customer, device, issue, priority)
         print(f"  Checked in #{t['id']} -> {QUEUE_FOR[t['category']]} queue "
               f"({prio_label(priority)})")
 

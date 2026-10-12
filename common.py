@@ -32,7 +32,7 @@ LEDGER_RPC_QUEUE = "ledger.rpc"
 MAX_PRIORITY = 1
 EXPRESS, STANDARD = 1, 0
 
-MAC_KEYWORDS = ("mac")  # all mac devices have the word "mac" in their device name, otherwise device = mobile.
+MAC_KEYWORDS = ("mac",)  # all mac devices have the word "mac" in their device name, otherwise device = mobile.
 
 
 def prio_label(p):
@@ -82,7 +82,7 @@ def declare_topology(ch):
     ch.queue_declare(LEDGER_EVENTS_QUEUE, durable=True) 
     ch.queue_bind(LEDGER_EVENTS_QUEUE, EVENT_EXCHANGE)
 
-    ch.queue_declare(LEDGER_RPC_QUEUE, durable=False) # RPC queue for the ledger, not durable because we don't want to persist RPC requests.
+    ch.queue_declare(LEDGER_RPC_QUEUE, durable=True)
 
 
 def publish_event(ch, kind, **fields):
