@@ -70,15 +70,15 @@ NOTE:
 ## Commands
 Each station has the ability to run the following commands:
 
-• `checkin` - Prompts for customer, device, issue, express (y/n), and queues the appointment 
-• `takenext` - Take the next appointment for your role (prioritizes express appointments)
-• `writenotes "text"` - Append a note to your current appointment 
-• `endappt` - Finish your current appointment 
-• `release` -  Put your current appointment back in the queue 
-• `current` - Details and notes for your current appointment 
-• `myappts` - List appointments you've taken today 
-• `allappts` - List all appointments today 
-• `show <id>` - Full details and notes for one appointment 
-• `queues` - How many appointments are waiting in each queue 
+• `checkin` - Prompts for customer, device, issue, express (y/n), and queues the appointment \
+• `takenext` - Take the next appointment for your role (prioritizes express appointments) \
+• `writenotes "text"` - Append a note to your current appointment \
+• `endappt` - Finish your current appointment \
+• `release` -  Put your current appointment back in the queue \
+• `current` - Details and notes for your current appointment \
+• `myappts` - List appointments you've taken today \
+• `allappts` - List all appointments today \
+• `show <id>` - Full details and notes for one appointment \
+• `queues` - How many appointments are waiting in each queue \
 • `help`, `quit` 
 
