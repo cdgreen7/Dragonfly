@@ -1,0 +1,15 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.3.6-management
+    container_name: dragonfly-rabbitmq
+    ports:
+      - "5672:5672"     # Python nodes port
+      - "15672:15672"   # web UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: dragonfly
+      RABBITMQ_DEFAULT_PASS: dragonfly
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/conf.d/20-dragonfly.conf:ro
+      - rabbitmq-data:/var/lib/rabbitmq
+volumes:
+  rabbitmq-data:
