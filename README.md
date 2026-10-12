@@ -15,10 +15,10 @@ RabbitMQ guarantees each appointment goes to exactly one station.
 - **4. Record keeping.** Every state change is broadcasted as an event. The system records/saves them in SQLite. Events wait in a durable queue, so events sent while the ledger is down are still available to consume when it restarts.
 
 ## Stations / roles
-For simplicity, there is only one kind of 'station' (in the sense that, technically, everyone can both create and start appointments).
-`--role` only decides which queue(s) a technician pulls from:
-• `mobile` will pull only from the `repairs.mobile` queue (any apple product outside of macs falls here).
-• `mac` will prioritize `repairs.mac` (mac/apple computer appointments), if empty though, it can pull from `repairs.mobile`.
+For simplicity, there is only one kind of 'station' (in the sense that, technically, everyone can both create and start appointments). \
+`--role` only decides which queue(s) a technician pulls from: \
+• `mobile` will pull only from the `repairs.mobile` queue (any apple product outside of macs falls here). \
+• `mac` will prioritize `repairs.mac` (mac/apple computer appointments), if empty though, it can pull from `repairs.mobile`. 
 
 ## Requirements
 - Python
