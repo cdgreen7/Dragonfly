@@ -133,5 +133,5 @@ Each station has the ability to run the following commands:
 
 ## AI Disclosure
 In 2026, it is hard to find code that is not AI-assisted in some way, shape or form. \
-With that being said, parts of this code were assisted and/or generated with AI. \
+With that being said, parts of this code was/were assisted and/or generated with AI. \
 Of course, the code that was generated has been labeled and reviewed (and understood) by me.
