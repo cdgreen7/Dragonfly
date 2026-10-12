@@ -2,7 +2,7 @@
 
 Outside of school, I work as a Genius Admin at Apple. Part of my job is to manage the repair/technical support queue.
 Throughout this course, I have tried to look at the tools I use in my day-to-day life and see whether they could be considered distributed systems.
-One easy correlation was with work. Customers get checked into a central queue, All technicians see and take from the same queue.
+One easy correlation was with work. In the system that we use, customers get checked into a central queue, All technicians see and take from the same queue.
 I thought it could be interesting (and applicable) to try recreating this queue as my distributed systems assignment.
 
 ## How / Why is this distributed?
