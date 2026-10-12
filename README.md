@@ -20,6 +20,55 @@ For simplicity, there is only one kind of 'station' (in the sense that, technica
 • `mobile` will pull only from the `repairs.mobile` queue (any apple product outside of macs falls here). \
 • `mac` will prioritize `repairs.mac` (mac/apple computer appointments), if empty though, it can pull from `repairs.mobile`. 
 
+
+## Architecture
+```mermaid
+flowchart TB
+    OB["Online booking"]
+    SC["Station<br/>checkin / queries"]
+
+    subgraph BROKER["RabbitMQ broker"]
+        direction TB
+        RX{{"repairs<br/>(direct exchange)"}}
+        EX{{"appt.events<br/>(fanout exchange)"}}
+        QM[["repairs.mobile<br/>(priority queue)"]]
+        QC[["repairs.mac<br/>(priority queue)"]]
+        LE[["ledger.events<br/>(durable queue)"]]
+        RPC[["ledger.rpc<br/>(query requests)"]]
+        RX -- mobile --> QM
+        RX -- mac --> QC
+        EX --> LE
+    end
+
+    MS["Mobile station<br/>(takenext)"]
+    MC["Mac station<br/>(takenext)"]
+    L["Ledger<br/>(ledger.py)"]
+    DB[("Database")]
+
+    OB -- ticket --> RX
+    SC -- ticket --> RX
+    OB -- event --> EX
+    SC -- event --> EX
+    SC -- queries --> RPC
+
+    QM --> MS
+    QC --> MC
+    QM -. overflow .-> MC
+    LE --> L
+    RPC --> L
+    L --> DB
+
+    classDef ticket fill:#EEEDFE,stroke:#534AB7,color:#26215C
+    classDef record fill:#FAECE7,stroke:#993C1D,color:#4A1B0C
+    classDef station fill:#E1F5EE,stroke:#0F6E56,color:#04342C
+    classDef source fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A
+    class RX,QM,QC ticket
+    class EX,LE,RPC,L,DB record
+    class SC,MS,MC station
+    class OB source
+    style BROKER fill:#FAFAF8,stroke:#888780,stroke-dasharray:5 5,color:#444441
+```
+
 ## Requirements
 - Python
 - Docker Desktop on the host computer
