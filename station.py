@@ -87,7 +87,7 @@ class Station(cmd.Cmd):
             customer = input("  Customer name: ").strip()
             device = input("  Device (e.g. iPhone 15, MacBook Pro): ").strip()
             issue = input("  Issue: ").strip()
-            express = input("  Express? [y/N]: ").strip().lower()
+            express = input("  Express? [y/n]: ").strip().lower()
         except (EOFError, KeyboardInterrupt):
             print("\n  Check-in cancelled.")
             return
