@@ -133,8 +133,3 @@ Each station has the ability to run the following commands:
 • `show <id>` - Full details and notes for one appointment \
 • `queues` - How many appointments are waiting in each queue \
 • `help`, `quit` 
-
-## AI Disclosure
-In 2026, it is hard to find code that is not AI-assisted in some way, shape or form. \
-With that being said, parts of this code was assisted by AI. \
-Of course, the code that is affected has been labeled and reviewed (and understood) by me.
