@@ -1,21 +1,9 @@
 # Dragonfly: Distributed Repair Queue.
 
-Outside of school, I work as a Genius Admin at Apple. Part of my job is to manage the repair/technical support queue.
-Throughout this course, I have tried to look at the tools I use in my day-to-day life and see whether they could be considered distributed systems.
-One easy correlation was with work. In the system that we use, customers get checked into a central queue, All technicians see and take from the same queue.
-I thought it could be interesting (and applicable) to try recreating this queue as my distributed systems assignment.
+This is a simple repair queue for Apple devices using RabbitMQ.
 
 ## Demo Video
 [Click Here](https://youtu.be/0ogMpKXL7XM?si=jKJ8TM_VvCp5Csv_)
-
-## How / Why is this distributed?
-- **1. There are many independent producers.** Each technician / check-in person (and online booking) can create appointments at the same time. 
-This system does not rely on a central server to generate/distributed IDs. It is up to each node to generates unique IDs that can't collide.
-- **2. There are many competing workers.** Similar to my work queue, technicians on different machines/instances all pull from the same queues.
-RabbitMQ guarantees each appointment goes to exactly one station.
-- **3. Fault tolerance!** A station holds an appointmnet *unacknowledged* until it is ended. If its
-  process or computer dies, the system puts the appointment back in the queue and the next time a technician requests an appointment, the appointment gets marked as reassigned.
-- **4. Record keeping.** Every state change is broadcasted as an event. The system records/saves them in SQLite. Events wait in a durable queue, so events sent while the ledger is down are still available to consume when it restarts.
 
 ## Stations / roles
 For simplicity, there is only one kind of 'station' (in the sense that, technically, everyone can both create and start appointments). \
